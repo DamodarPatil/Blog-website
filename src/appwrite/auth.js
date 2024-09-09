@@ -21,7 +21,7 @@ export class AuthService {
       this.account = new Account(this.client); // Initialize Account instance
     } catch (error) {
       console.error("Error initializing AuthService:", error);
-      throw new Error("Failed to initialize AuthService");
+      throw error;
     }
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
       }
     } catch (error) {
       console.error("Error creating account:", error);
-      throw new Error("Failed to create account. Please try again.");
+      throw error;
     }
   };
 
@@ -64,15 +64,32 @@ export class AuthService {
       return session; // Return the session details on successful login
     } catch (error) {
       console.error("Error logging in:", error);
-      throw new Error(
-        "Login failed. Please check your credentials and try again."
-      );
+      throw error;
     }
   };
 
+  // Get the currently logged-in user details
+//   getCurrentUser = async () => {
+//     try {
+//       const currentUser = await this.account.get();
+//       return currentUser;
+//     } catch (error) {
+//       console.error("Error fetching current user:", error);
+//     }
+//     return null; // Return null if there's an error fetching the user
+//   };
 
+//   //   log out the current user by deleting all sessions
+//   logout = async () => {
+//     try {
+//       await this.account.deleteSessions();
+//     } catch (error) {
+//       console.error("Appwrite serive :: logout :: error", error);
+//     }
+//   };
 }
 
-// Export an instance of AuthService
 const authService = new AuthService();
+
+// Export an instance of AuthService
 export default authService;
