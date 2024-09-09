@@ -69,24 +69,24 @@ export class AuthService {
   };
 
   // Get the currently logged-in user details
-//   getCurrentUser = async () => {
-//     try {
-//       const currentUser = await this.account.get();
-//       return currentUser;
-//     } catch (error) {
-//       console.error("Error fetching current user:", error);
-//     }
-//     return null; // Return null if there's an error fetching the user
-//   };
+  getCurrentUser = async () => {
+    try {
+      const currentUser = await this.account.get();
+      return currentUser;
+    } catch (error) {
+      console.error("Error fetching current user:", error);
+    }
+    return null; // Return null if there's an error fetching the user
+  };
 
-//   //   log out the current user by deleting all sessions
-//   logout = async () => {
-//     try {
-//       await this.account.deleteSessions();
-//     } catch (error) {
-//       console.error("Appwrite serive :: logout :: error", error);
-//     }
-//   };
+  //   log out the current user by deleting all sessions
+  logout = async () => {
+    try {
+      await this.account.deleteSessions();
+    } catch (error) {
+      console.error("Appwrite serive :: logout :: error", error);
+    }
+  };
 }
 
 const authService = new AuthService();
