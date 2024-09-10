@@ -1,4 +1,3 @@
-// Import configuration and necessary classes from Appwrite
 import conf from "../config/config.js";
 import { Client, Account, ID } from "appwrite";
 
