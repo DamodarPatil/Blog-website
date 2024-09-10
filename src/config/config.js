@@ -1,13 +1,4 @@
-import { z } from "zod";
-
-// Define schema for environment variables
-const envSchema = z.object({
-  VITE_APPWRITE_API_ENDPOINT: z.string().url(),
-  VITE_APPWRITE_PROJECT_ID: z.string(),
-  VITE_APPWRITE_DATABASE_ID: z.string(),
-  VITE_APPWRITE_COLLECTION_ID: z.string(),
-  VITE_APPWRITE_BUCKET_ID: z.string(),
-});
+import { envSchema } from "../data/zodSchema";
 
 // Load and validate environment variables
 const env = envSchema.safeParse(import.meta.env);
