@@ -28,4 +28,5 @@ const envSchema = z.object({
   VITE_APPWRITE_BUCKET_ID: z.string(),
 });
 
+
 export { userSchema, loginSchema, envSchema };
