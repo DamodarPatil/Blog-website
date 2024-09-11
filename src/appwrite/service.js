@@ -86,7 +86,23 @@ export class Service {
       return true;
     } catch (error) {
       logger.error("Appwrite Service :: deletePost :: error", error);
-      throw new ServiceError("Failed to delete post");
+      throw new ServiceError(`Failed to delete post with slug ${slug}`);
+    }
+  };
+
+  getPost = async (slug) => {
+    if (!slug) {
+      throw new ValidationError("Invalid slug provided");
+    }
+    try {
+      return await this.databases.getDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        slug
+      );
+    } catch (error) {
+      logger.error("Appwrite Service :: getPost :: error", error);
+      throw new ServiceError(`Failed to retrieve post with slug ${slug}`);
     }
   };
 }
