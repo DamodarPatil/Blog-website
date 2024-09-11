@@ -72,6 +72,23 @@ export class Service {
       throw new ServiceError("Failed to update post");
     }
   };
+
+  deletePost = async (slug) => {
+    if (!slug) {
+      throw new ValidationError("Invalid slug provided");
+    }
+    try {
+      await this.databases.deleteDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        slug
+      );
+      return true;
+    } catch (error) {
+      logger.error("Appwrite Service :: deletePost :: error", error);
+      throw new ServiceError("Failed to delete post");
+    }
+  };
 }
 
 const service = new Service();
