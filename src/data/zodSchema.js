@@ -37,5 +37,6 @@ const createPostSchema = z.object({
   status: z.enum(["draft", "published"]).default("draft"),
   userId: z.string().min(1, { message: "User ID is required." }),
 });
+const updatePostSchema = createPostSchema.partial(); // For update, all fields are optional
 
-export { userSchema, loginSchema, envSchema, createPostSchema };
+export { userSchema, loginSchema, envSchema, updatePostSchema };
