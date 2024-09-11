@@ -2,20 +2,9 @@ import conf from "../config/config.js";
 import { Client, Account, ID } from "appwrite";
 import { userSchema, loginSchema } from "../data/zodSchema.js";
 import { z } from "zod";
-import { createLogger, format, transports } from "winston";
+import { logger } from "../data/logger.js";
+import { AuthError } from "../data/error.js";
 
-const logger = createLogger({
-  level: "info",
-  format: format.combine(format.timestamp(), format.json()),
-  transports: [new transports.Console()],
-});
-
-class AuthError extends Error {
-  constructor(message) {
-    super(message);
-    this.name = "AuthError";
-  }
-}
 export class AuthService {
   client = new Client();
   account;
