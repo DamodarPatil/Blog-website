@@ -11,7 +11,6 @@ const QueryTypes = Object.freeze({
 export class DatabaseService {
   client = new Client();
   databases;
-  //   storage;
 
   constructor() {
     try {
@@ -23,7 +22,6 @@ export class DatabaseService {
           import.meta.env.VITE_APPWRITE_PROJECT_ID || conf.appwriteProjectId
         );
       this.databases = new Databases(this.client);
-      //   this.storage = new Storage(this.storage);
     } catch (error) {
       logger.error("Error initializing Services:", { error });
       throw new ServiceError("Failed to initialize the databases services.");
@@ -48,7 +46,9 @@ export class DatabaseService {
         data
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: createPost :: error", error);
+      logger.error("Appwrite DatabaseService :: createPost :: error", {
+        error,
+      });
       throw new ServiceError("Failed to create post");
     }
   };
@@ -72,7 +72,9 @@ export class DatabaseService {
         data
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: updatePost :: error", error);
+      logger.error("Appwrite DatabaseService :: updatePost :: error", {
+        error,
+      });
       throw new ServiceError("Failed to update post");
     }
   };
@@ -89,7 +91,9 @@ export class DatabaseService {
       );
       return true;
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: deletePost :: error", error);
+      logger.error("Appwrite DatabaseService :: deletePost :: error", {
+        error,
+      });
       throw new ServiceError(`Failed to delete post with slug ${slug}`);
     }
   };
@@ -105,7 +109,7 @@ export class DatabaseService {
         slug
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: getPost :: error", error);
+      logger.error("Appwrite DatabaseService :: getPost :: error", { error });
       throw new ServiceError(`Failed to retrieve post with slug ${slug}`);
     }
   };
@@ -118,7 +122,7 @@ export class DatabaseService {
         queries
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: getPosts :: error", error);
+      logger.error("Appwrite DatabaseService :: getPosts :: error", { error });
       throw new ServiceError("Failed to retrieve posts");
     }
   };
