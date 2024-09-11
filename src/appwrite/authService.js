@@ -6,10 +6,9 @@ import { logger } from "../data/logger.js";
 import { AuthError } from "../data/error.js";
 
 export class AuthService {
-  client = new Client();
-  account;
-
   constructor() {
+    this.client = new Client();
+    this.account = new Account(this.client);
     try {
       this.client
         .setEndpoint(
@@ -18,10 +17,10 @@ export class AuthService {
         .setProject(
           import.meta.env.VITE_APPWRITE_PROJECT_ID || conf.appwriteProjectId
         );
-
-      this.account = new Account(this.client);
     } catch (error) {
-      logger.error("Error initializing AuthService:", { error });
+      logger.error("Error initializing AuthService:", {
+        message: error.message,
+      });
       throw new AuthError("Failed to initialize the authentication service.");
     }
   }
@@ -32,27 +31,23 @@ export class AuthService {
       // Validate input
       userSchema.parse({ email, password, name });
 
-      const userAccount = await this.account.create(
+      await this.account.create(
         ID.unique(), // Generate a unique ID for the user
         email,
         password,
         name
       );
 
-      if (userAccount) {
-        return await this.login({ email, password });
-      } else {
-        throw new AuthError("Failed to create the account");
-      }
+      return await this.login({ email, password });
     } catch (error) {
       if (error instanceof z.ZodError) {
         // Handle Zod validation errors
-        logger.warn("Validation error:", { error: error.errors });
+        logger.warn("Validation error:", { errors: error.errors });
         throw new AuthError(
           "Invalid input. Please check the provided details."
         );
       } else {
-        logger.error("Error creating account:", { error });
+        logger.error("Error creating account:", { message: error.message });
         throw new AuthError("Failed to create the account. Please try again.");
       }
     }
@@ -61,7 +56,7 @@ export class AuthService {
   // Log in a user with email and password
   login = async ({ email, password }) => {
     try {
-      // validate input
+      // Validate input
       loginSchema.parse({ email, password });
 
       const session = await this.account.createEmailPasswordSession(
@@ -73,10 +68,10 @@ export class AuthService {
     } catch (error) {
       if (error instanceof z.ZodError) {
         // Handle validation errors specifically for login
-        logger.warn("Validation error:", { error: error.errors });
+        logger.warn("Validation error:", { errors: error.errors });
         throw new AuthError("Invalid email or password format.");
       } else {
-        logger.error("Error logging in:", { error });
+        logger.error("Error logging in:", { message: error.message });
         throw new AuthError(
           "Login failed. Please check your credentials and try again."
         );
@@ -90,7 +85,7 @@ export class AuthService {
       const currentUser = await this.account.get();
       return currentUser;
     } catch (error) {
-      logger.error("Error fetching current user:", { error });
+      logger.error("Error fetching current user:", { message: error.message });
       return null; // Return null if there's an error fetching the user
     }
   };
@@ -100,7 +95,7 @@ export class AuthService {
     try {
       await this.account.deleteSessions(); // Deletes all sessions
     } catch (error) {
-      logger.error("Error logging out:", { error });
+      logger.error("Error logging out:", { message: error.message });
       throw new AuthError("Failed to log out. Please try again.");
     }
   };
