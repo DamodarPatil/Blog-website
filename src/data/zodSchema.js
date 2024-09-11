@@ -28,5 +28,14 @@ const envSchema = z.object({
   VITE_APPWRITE_BUCKET_ID: z.string(),
 });
 
+// Define schema for post data
+const createPostSchema = z.object({
+    title:z.string().min(1,{message: "Title is required."}),
+    slug:z.string().min(1,{message:"Slug is required."}),
+    content: z.string().min(1,{message: "Content is required."}),
+    featuredImage: z.string().url({message:"Invalid URL for featured image."}),
+    status: z.enum(["draft","published"]).default("draft"),
+})
 
-export { userSchema, loginSchema, envSchema };
+
+export { userSchema, loginSchema, envSchema, createPostSchema };
