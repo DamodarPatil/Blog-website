@@ -8,12 +8,14 @@ import { createPostSchema, updatePostSchema } from "../data/zodSchema.js";
 const QueryTypes = Object.freeze({
   STATUS: "status",
 });
-export class DatabaseService {
-  client = new Client();
-  databases;
 
+export class DatabaseService {
   constructor() {
+    this.client = new Client();
+    this.databases = new Databases(this.client);
+
     try {
+      // Initialize the Appwrite client with endpoint and project ID
       this.client
         .setEndpoint(
           import.meta.env.VITE_APPWRITE_API_ENDPOINT || conf.appwriteApiEndpoint
@@ -21,20 +23,22 @@ export class DatabaseService {
         .setProject(
           import.meta.env.VITE_APPWRITE_PROJECT_ID || conf.appwriteProjectId
         );
-      this.databases = new Databases(this.client);
     } catch (error) {
-      logger.error("Error initializing Services:", { error });
-      throw new ServiceError("Failed to initialize the databases services.");
+      // Log error and throw a custom error if initialization fails
+      logger.error("Error initializing DatabaseService:", {
+        message: error.message,
+      });
+      throw new ServiceError("Failed to initialize the database service.");
     }
   }
 
   createPost = async (postData) => {
     const parsed = createPostSchema.safeParse(postData);
     if (!parsed.success) {
-      logger.error(
-        "Validation failed for createPost:" +
-          JSON.stringify(parsed.error.format())
-      );
+      // Log validation errors and throw a custom error
+      logger.error("Validation failed for createPost:", {
+        errors: parsed.error.format(),
+      });
       throw new ValidationError("Invalid post data", parsed.error.format());
     }
     const { slug, ...data } = parsed.data;
@@ -46,24 +50,24 @@ export class DatabaseService {
         data
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: createPost :: error", {
-        error,
+      // Log error and throw a custom error if document creation fails
+      logger.error("Error creating post:", {
+        message: error.message,
       });
-      throw new ServiceError("Failed to create post");
+      throw new ServiceError("Failed to create post.");
     }
   };
 
   updatePost = async (updateData) => {
     const parsed = updatePostSchema.safeParse(updateData);
     if (!parsed.success) {
-      logger.error(
-        "Validation failed for updatePost:" +
-          JSON.stringify(parsed.error.format())
-      );
+      // Log validation errors and throw a custom error
+      logger.error("Validation failed for updatePost:", {
+        errors: parsed.error.format(),
+      });
       throw new ValidationError("Invalid update data", parsed.error.format());
     }
     const { slug, ...data } = parsed.data;
-
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -72,15 +76,17 @@ export class DatabaseService {
         data
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: updatePost :: error", {
-        error,
+      // Log error and throw a custom error if document update fails
+      logger.error("Error updating post:", {
+        message: error.message,
       });
-      throw new ServiceError("Failed to update post");
+      throw new ServiceError("Failed to update post.");
     }
   };
 
   deletePost = async (slug) => {
     if (!slug) {
+      // Throw a validation error if the slug is invalid
       throw new ValidationError("Invalid slug provided");
     }
     try {
@@ -91,8 +97,9 @@ export class DatabaseService {
       );
       return true;
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: deletePost :: error", {
-        error,
+      // Log error and throw a custom error if document deletion fails
+      logger.error("Error deleting post:", {
+        message: error.message,
       });
       throw new ServiceError(`Failed to delete post with slug ${slug}`);
     }
@@ -100,6 +107,7 @@ export class DatabaseService {
 
   getPost = async (slug) => {
     if (!slug) {
+      // Throw a validation error if the slug is invalid
       throw new ValidationError("Invalid slug provided");
     }
     try {
@@ -109,7 +117,10 @@ export class DatabaseService {
         slug
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: getPost :: error", { error });
+      // Log error and throw a custom error if document retrieval fails
+      logger.error("Error retrieving post:", {
+        message: error.message,
+      });
       throw new ServiceError(`Failed to retrieve post with slug ${slug}`);
     }
   };
@@ -122,8 +133,11 @@ export class DatabaseService {
         queries
       );
     } catch (error) {
-      logger.error("Appwrite DatabaseService :: getPosts :: error", { error });
-      throw new ServiceError("Failed to retrieve posts");
+      // Log error and throw a custom error if documents retrieval fails
+      logger.error("Error retrieving posts:", {
+        message: error.message,
+      });
+      throw new ServiceError("Failed to retrieve posts.");
     }
   };
 }
