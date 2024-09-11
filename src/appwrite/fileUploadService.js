@@ -36,14 +36,14 @@ export class FileUploadService {
     }
   };
 
-//   deleteFile = async (fileId) => {
-//     try {
-//       await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
-//     } catch (error) {
-//       logger.error("Appwrite Service :: deleteFile :: error", { error });
-//       throw new ServiceError("Failed to delete file");
-//     }
-//   };
+  deleteFile = async (fileId) => {
+    try {
+      await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
+    } catch (error) {
+      logger.error("Appwrite Service :: deleteFile :: error", { error });
+      throw new ServiceError("Failed to delete file");
+    }
+  };
 }
 
 const fileUploadService = new FileUploadService();
