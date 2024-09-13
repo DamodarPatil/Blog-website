@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import authService from "./appwrite/authService";
 import { login, logout } from "./store/authSlice";
 import { Header, Footer } from "./components/index";
+import { logger } from "./data/logger";
 // import { Outlet } from "react-router-dom";
 
 const App = () => {
@@ -10,12 +11,14 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let isMounted = true; // Flag to track if the component is mounted
+    const controller = new AbortController(); // Create an AboutController instance
+    const { signal } = controller;
 
     const fetchCurrentUser = async () => {
       try {
         const userData = await authService.getCurrentUser();
-        if (isMounted) {
+        if (!signal.aborted) {
+          //Check if the operation was aborted
           if (userData) {
             dispatch(login({ userData }));
           } else {
@@ -23,23 +26,22 @@ const App = () => {
           }
         }
       } catch (error) {
-        console.error("Failed to fetch current user:", {
-          message: error.message,
-        });
-        if (isMounted) {
+        if (!signal.aborted) {
+          logger.error("Failed to fetch current user:", {
+            message: error.message,
+          });
           dispatch(logout());
         }
       } finally {
-        if (isMounted) {
+        if (!signal.aborted) {
           setLoading(false);
         }
       }
     };
-
     fetchCurrentUser();
 
     return () => {
-      isMounted = false; // Cleanup function to set the flag to false
+      controller.abort(); //Abort the fetch operation on component unmount
     };
   }, [dispatch]);
 
