@@ -1,3 +1,8 @@
+/**
+ * Custom error classes for handling different types of errors.
+ * Includes AuthError, ServiceError, and ValidationError.
+ */
+
 class AuthError extends Error {
   constructor(message) {
     super(message);

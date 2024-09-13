@@ -1,5 +1,10 @@
 import z from "zod";
 
+/**
+ * Zod schemas for validating various data structures.
+ * Includes schemas for user data, login data, environment variables, and post data.
+ */
+
 // Define schema for user data
 const userSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),

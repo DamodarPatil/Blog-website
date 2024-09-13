@@ -3,6 +3,12 @@ import { Client, ID, Storage } from "appwrite";
 import { logger } from "../data/logger";
 import { ServiceError } from "../data/error";
 
+/**
+ * Service class for handling file uploads with Appwrite.
+ * Provides methods for uploading, deleting, and retrieving file previews.
+ * Uses custom error classes for error handling.
+ */
+
 export class FileUploadService {
   constructor() {
     this.client = new Client();

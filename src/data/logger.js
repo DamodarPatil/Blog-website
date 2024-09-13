@@ -1,5 +1,11 @@
 import log from "loglevel";
 
+/**
+ * Logger module using loglevel for logging messages with different severity levels.
+ * Adds a timestamp to each log message.
+ * Default log level is set to "info".
+ */
+
 // Set the default log level (trace, debug, info, warn, error)
 log.setLevel("info");
 

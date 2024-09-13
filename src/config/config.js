@@ -1,5 +1,11 @@
 import { envSchema } from "../data/zodSchema";
 
+/**
+ * Custom hook to fetch and manage the current user state.
+ * Handles fetching user data, managing loading and error states,
+ * and dispatching login/logout actions based on the user data.
+ */
+
 // Load and validate environment variables
 const env = envSchema.safeParse(import.meta.env);
 

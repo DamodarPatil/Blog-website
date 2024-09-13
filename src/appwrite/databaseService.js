@@ -4,6 +4,12 @@ import { logger } from "../data/logger.js";
 import { ServiceError, ValidationError } from "../data/error.js";
 import { createPostSchema, updatePostSchema } from "../data/zodSchema.js";
 
+/**
+ * Service class for interacting with the Appwrite database.
+ * Provides methods for creating, updating, deleting, and retrieving posts.
+ * Uses Zod schemas for input validation and custom error classes for error handling.
+ */
+
 // Define an enum for query types
 const QueryTypes = Object.freeze({
   STATUS: "status",

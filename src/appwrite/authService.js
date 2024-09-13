@@ -5,6 +5,12 @@ import { z } from "zod";
 import { logger } from "../data/logger.js";
 import { AuthError } from "../data/error.js";
 
+/**
+ * Service class for handling authentication with Appwrite.
+ * Provides methods for creating accounts, logging in, fetching current user, and logging out.
+ * Uses Zod schemas for input validation and custom error classes for error handling.
+ */
+
 export class AuthService {
   constructor() {
     this.client = new Client();
