@@ -26,8 +26,8 @@ const LogoutBtn = () => {
       type="button"
       onClick={handleLogout}
       disabled={isLoading} //Disable button during logout process
-      className={`inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full
-        ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+      className={`inline-block px-6 py-2 duration-200 hover:bg-[#FADFA1] rounded-full
+        ${isLoading ? "opacity-50 cursor-not-allowed" : "bg-[#C96868] text-white"}`}
     >
       {isLoading ? "Logging out..." : "Logout"}
     </button>
