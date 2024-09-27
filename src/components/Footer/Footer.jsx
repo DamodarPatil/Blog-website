@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Logo } from "../index";
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-10">
+    <footer className="bg-[#7EACB5] text-[#FFF4EA] py-10">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Copyright */}
@@ -11,20 +11,20 @@ function Footer() {
             <div>
               <Logo width="120px" />
             </div>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-[#FADFA1]">
               &copy; {new Date().getFullYear()} DevUI. All rights reserved.
             </p>
           </div>
 
           {/* Company Links */}
           <div>
-            <h3 className="mb-6 text-lg font-semibold uppercase tracking-wide">
+            <h3 className="mb-6 text-lg font-semibold uppercase tracking-wide text-[#FFF4EA]">
               Company
             </h3>
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Features
@@ -32,7 +32,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Pricing
@@ -40,7 +40,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Affiliate Program
@@ -48,7 +48,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Press Kit
@@ -59,13 +59,13 @@ function Footer() {
 
           {/* Support Links */}
           <div>
-            <h3 className="mb-6 text-lg font-semibold uppercase tracking-wide">
+            <h3 className="mb-6 text-lg font-semibold uppercase tracking-wide text-[#FFF4EA]">
               Support
             </h3>
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Account
@@ -73,7 +73,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Help
@@ -81,7 +81,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Contact Us
@@ -89,7 +89,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Customer Support
@@ -100,13 +100,13 @@ function Footer() {
 
           {/* Legal Links */}
           <div>
-            <h3 className="mb-6 text-lg font-semibold uppercase tracking-wide">
+            <h3 className="mb-6 text-lg font-semibold uppercase tracking-wide text-[#FFF4EA]">
               Legal
             </h3>
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Terms & Conditions
@@ -114,7 +114,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Privacy Policy
@@ -122,7 +122,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-gray-300 hover:text-white transition"
+                  className="text-[#FFF4EA] hover:text-[#C96868] transition"
                   to="/"
                 >
                   Licensing
@@ -138,7 +138,7 @@ function Footer() {
             href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white"
+            className="text-[#FADFA1] hover:text-[#C96868]"
           >
             <i className="fab fa-facebook-f"></i>
           </a>
@@ -146,7 +146,7 @@ function Footer() {
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white"
+            className="text-[#FADFA1] hover:text-[#C96868]"
           >
             <i className="fab fa-twitter"></i>
           </a>
@@ -154,7 +154,7 @@ function Footer() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white"
+            className="text-[#FADFA1] hover:text-[#C96868]"
           >
             <i className="fab fa-linkedin-in"></i>
           </a>
@@ -162,6 +162,6 @@ function Footer() {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
