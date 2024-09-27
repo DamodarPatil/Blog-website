@@ -5,19 +5,19 @@ import { useState } from "react";
 import { logger } from "../../data/logger";
 
 const LogoutBtn = () => {
-  const [isLoading, setIsLoading] = useState(false); //State to manage loading status
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    setIsLoading(true); //Start loading when logout starts
+    setIsLoading(true);
     try {
-      await authService.logout(); //Logout from the auth service
-      dispatch(logout()); //Dispatch the Redux logout action
+      await authService.logout();
+      dispatch(logout());
     } catch (error) {
       logger.error("Logout Failed:", { message: error.message });
       alert("Logout failed. Please try again.");
     } finally {
-      setIsLoading(false); //Stop loading regardless of success or failure
+      setIsLoading(false);
     }
   };
 
@@ -25,9 +25,9 @@ const LogoutBtn = () => {
     <button
       type="button"
       onClick={handleLogout}
-      disabled={isLoading} //Disable button during logout process
-      className={`inline-block px-6 py-2 duration-200 hover:bg-[#FADFA1] rounded-full
-        ${isLoading ? "opacity-50 cursor-not-allowed" : "bg-[#C96868] text-white"}`}
+      disabled={isLoading}
+      className={`inline-block px-6 py-2 duration-200 hover:bg-mutedGold rounded-full
+        ${isLoading ? "opacity-50 cursor-not-allowed" : "bg-coral text-white"}`}
     >
       {isLoading ? "Logging out..." : "Logout"}
     </button>

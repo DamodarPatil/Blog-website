@@ -9,16 +9,15 @@ const NavItems = ({ items, closeMobileMenu }) => {
   const handleNavigation = (slug) => {
     navigate(slug);
     if (closeMobileMenu) {
-      closeMobileMenu(); // Close menu on mobile when navigating
+      closeMobileMenu();
     }
   };
 
   const handleResize = () => {
-    // Assuming 768px is the breakpoint for mobile
     if (window.innerWidth > 768) {
       setIsMobileMenuOpen(false);
       if (closeMobileMenu) {
-        closeMobileMenu(); // Close menu when resizing to desktop
+        closeMobileMenu();
       }
     }
   };
@@ -42,7 +41,7 @@ const NavItems = ({ items, closeMobileMenu }) => {
           <li key={item.name}>
             <button
               onClick={() => handleNavigation(item.slug)}
-              className="block w-full text-left md:inline-block px-6 md:py-3 py-1 text-[#C96868] bg-[#FFF4EA] rounded-lg font-semibold hover:bg-[#FADFA1] hover:text-white transition duration-300 ease-in-out"
+              className="block w-full text-left md:inline-block px-6 md:py-3 py-1 text-deepNavy bg-warmGray rounded-lg font-semibold hover:bg-mutedGold hover:text-white transition duration-300 ease-in-out"
             >
               {item.name}
             </button>

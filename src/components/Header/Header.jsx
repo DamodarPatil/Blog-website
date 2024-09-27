@@ -23,7 +23,7 @@ const Header = () => {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="bg-[#C96868] py-6">
+    <header className="bg-deepNavy py-6">
       <Container>
         <div className="flex justify-between items-center">
           <Link to="/" className="text-2xl md:text-3xl text-white font-bold">
@@ -45,7 +45,12 @@ const Header = () => {
                 stroke="currentColor"
                 className="h-6 w-6 text-white"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             ) : (
               <svg
@@ -55,14 +60,19 @@ const Header = () => {
                 stroke="currentColor"
                 className="h-6 w-6 text-white"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             )}
           </button>
         </div>
         {/* Mobile menu */}
         <div
-          className={`fixed top-16 right-0 w-[200px] max-w-sm bg-[#FFF4EA] rounded-lg p-4 transform ${
+          className={`fixed top-16 right-0 w-[200px] max-w-sm bg-warmGray rounded-lg p-4 transform ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           } transition-transform duration-300 ease-in-out shadow-lg z-50`}
         >

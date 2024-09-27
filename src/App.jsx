@@ -6,30 +6,29 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <p className="text-xl font-semibold">Loading...</p>
+      <div className="flex justify-center items-center min-h-screen bg-warmGray">
+        <p className="text-2xl font-semibold text-deepNavy animate-pulse">
+          Loading...
+        </p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        {/* Display a generic error message */}
-        <p className="text-xl font-semibold text-red-500">{error}</p>
+      <div className="flex justify-center items-center min-h-screen bg-warmGray">
+        <p className="text-xl font-semibold text-coral">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-gray-100">
-      <div className="w-full">
-        <Header />
-        <main className="flex-grow p-4 md:p-8">
-          {/* Placeholder for future routes */}
-        </main>
-        <Footer />
-      </div>
+    <div className="min-h-screen flex flex-col justify-between bg-warmGray text-primaryText">
+      <Header />
+      <main className="flex-grow p-6 md:p-12 bg-white shadow-xl rounded-lg mx-4 md:mx-16 my-6">
+        {/* Placeholder for future routes */}
+      </main>
+      <Footer />
     </div>
   );
 };
