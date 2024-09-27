@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 const Button = ({
   children,
   type = "button",
-  bgColor = "bg-blue-600",
-  textColor = "text-white",
+  bgColor = "bg-[#C96868]", // Default background color from your palette
+  textColor = "text-[#FFF4EA]", // Default text color from your palette
   className = "",
   ...props
 }) => {
