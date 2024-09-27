@@ -13,7 +13,8 @@ const Input = forwardRef(
         )}
         <input
           type={type}
-          className={`px-2 py-2 rounded-lg bg-[#FFF4EA] outline-none focus:bg-[#FADFA1] duration-200 border border-[#C96868] w-full ${className}`}
+          className={`px-2 py-2 rounded-lg bg-[#FFF4EA] outline-none focus:bg-[#FADFA1]
+            duration-200 border border-[#C96868] w-full ${className}`}
           ref={ref}
           {...props}
           id={id}
