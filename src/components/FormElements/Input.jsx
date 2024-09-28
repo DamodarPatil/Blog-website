@@ -1,6 +1,10 @@
+// ../components/Input.jsx
 import { forwardRef, useId } from "react";
 
-const Input = ({ label, type = "text", className = "", ...props }, ref) => {
+const Input = (
+  { label, type = "text", className = "", error, ...props },
+  ref
+) => {
   const id = useId();
   return (
     <div className="w-full">
@@ -12,11 +16,20 @@ const Input = ({ label, type = "text", className = "", ...props }, ref) => {
       <input
         type={type}
         className={`px-2 py-2 rounded-lg bg-warmGray outline-none focus:bg-mutedGold
-            duration-200 border border-deepNavy w-full ${className}`}
+          duration-200 border w-full ${
+            error ? "border-red-600" : "border-deepNavy"
+          } ${className}`}
         ref={ref}
         {...props}
         id={id}
+        aria-invalid={error ? "true" : "false"}
+        aria-describedby={error ? `${id}-error` : undefined}
       />
+      {error && (
+        <p id={`${id}-error`} className="text-red-600 mt-1 text-sm">
+          {error}
+        </p>
+      )}
     </div>
   );
 };
