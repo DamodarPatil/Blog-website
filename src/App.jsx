@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import { Header, Footer } from "./components/index";
 import useCurrentUser from "./hooks/useCurrentUser";
 
@@ -27,6 +28,7 @@ const App = () => {
       <Header />
       <main className="flex-grow p-6 md:p-12 bg-white shadow-xl rounded-lg mx-4 md:mx-16 my-6">
         {/* Placeholder for future routes */}
+        <Outlet />
       </main>
       <Footer />
     </div>
