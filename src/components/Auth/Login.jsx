@@ -11,7 +11,11 @@ import { loginSchema } from "../../data/zodSchema";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(loginSchema),
   });
   const [error, setError] = useState();
@@ -30,7 +34,7 @@ const Login = () => {
         }
       }
     } catch (error) {
-      setError(error.message);
+      setError(error?.message || "An unexpected error occurred");
     } finally {
       setLoading(false);
     }
@@ -56,9 +60,8 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
-        {error && (
-          <p className="text-red-600 mt-8 text-center">{error.message}</p>
-        )}
+        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
             <Input
@@ -66,13 +69,19 @@ const Login = () => {
               placeholder="Enter your email"
               type="email"
               {...register("email")}
+              error={errors.email?.message}
+              autoComplete="email"
             />
+
             <Input
               label="Password: "
               placeholder="Enter your password"
               type="password"
               {...register("password")}
+              error={errors.password?.message}
+              autoComplete="password"
             />
+
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Signing in..." : "Sign in"}
             </Button>

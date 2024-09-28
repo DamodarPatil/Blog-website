@@ -11,7 +11,11 @@ import { Link, useNavigate } from "react-router-dom";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(userSchema),
   });
   const [error, setError] = useState();
@@ -30,7 +34,7 @@ const Signup = () => {
         }
       }
     } catch (error) {
-      setError(error.message);
+      setError(error?.message || "An unexpected error occurred");
     } finally {
       setLoading(false);
     }
@@ -66,18 +70,24 @@ const Signup = () => {
               placeholder="Enter your name"
               type="text"
               {...register("name")}
+              error={errors.name?.message}
+              autoComplete="name"
             />
             <Input
               label="Email: "
               placeholder="Enter your email"
               type="email"
               {...register("email")}
+              error={errors.email?.message}
+              autoComplete="email"
             />
             <Input
               label="Password: "
               placeholder="Enter your password"
               type="password"
               {...register("password")}
+              error={errors.password?.message}
+              autoComplete="current-password"
             />
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Signing up..." : "Sign up"}
