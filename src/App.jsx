@@ -1,4 +1,5 @@
 // import { Routes, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Header, Footer } from "./components/index";
 import useCurrentUser from "./hooks/useCurrentUser";
 // import LoginPage from "./pages/LoginPage";
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes> */}
+        <Outlet/>
       </main>
       <Footer />
     </div>
