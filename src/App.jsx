@@ -1,6 +1,8 @@
-import { Outlet } from "react-router-dom";
+// import { Routes, Route } from "react-router-dom";
 import { Header, Footer } from "./components/index";
 import useCurrentUser from "./hooks/useCurrentUser";
+// import LoginPage from "./pages/LoginPage";
+// import SignupPage from "./pages/SignupPage";
 
 const App = () => {
   const { loading, error } = useCurrentUser();
@@ -28,7 +30,10 @@ const App = () => {
       <Header />
       <main className="flex-grow p-6 md:p-12 bg-white shadow-xl rounded-lg mx-4 md:mx-16 my-6">
         {/* Placeholder for future routes */}
-        <Outlet />
+        {/* <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes> */}
       </main>
       <Footer />
     </div>
