@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { logger } from "../data/logger";
 import authService from "../appwrite/authService";
 import { login, logout } from "../store/authSlice";
 
@@ -31,11 +30,8 @@ const useCurrentUser = () => {
         }
       } catch (error) {
         if (!signal.aborted) {
-          logger.error("Failed to fetch current user:", {
-            message: error.message,
-          });
-
-          setError("Unable to fetch user data. Please try again later.");
+          //   setError("Unable to fetch user data. Please try again later.");
+          setError(error.message);
 
           dispatch(logout()); // Dispatch logout action on error
         }
