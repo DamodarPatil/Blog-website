@@ -1,5 +1,4 @@
 import { forwardRef, useId } from "react";
-import PropTypes from "prop-types";
 
 const Select = ({ options, label, className = "", ...props }, ref) => {
   const id = useId();
@@ -28,10 +27,6 @@ const Select = ({ options, label, className = "", ...props }, ref) => {
   );
 };
 
-Select.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  label: PropTypes.string,
-  className: PropTypes.string,
-};
+
 
 export default forwardRef(Select);
